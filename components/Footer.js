@@ -20,7 +20,7 @@ export default function Footer() {
           <div className="mx-1">
             {/* change */}
             <Link href="" className="link-underline">
-            Hope your day is as legendary as a One Piece treasure! 🏴‍☠️!
+              Hope your day is as legendary as a One Piece treasure! 🏴‍☠️!
             </Link>
           </div>
           {`•`}

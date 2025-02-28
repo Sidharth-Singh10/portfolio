@@ -12,7 +12,6 @@ const experienceData = [
     text3:
       'Developed robust layer merging system that handles multiple path-type combinations (spline-spline, path-spline, path-path) while maintaining geometric properties and node graph structures.',
   },
- 
 ]
 
 export default experienceData

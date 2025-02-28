@@ -28,7 +28,7 @@ export default function Home({ posts }) {
               Hi, I am{' '}
               <SplitText
                 text="Sidharth"
-                className="text-center text-3xl font-extrabold leading-9 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 text-primary-color-500 dark:text-primary-color-dark-500"
+                className="text-center text-3xl font-extrabold leading-9 tracking-tight text-primary-color-500 dark:text-primary-color-dark-500 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14"
                 delay={150}
                 animationFrom={{ opacity: 0, transform: 'translate3d(0,50px,0)' }}
                 animationTo={{ opacity: 1, transform: 'translate3d(0,0,0)' }}

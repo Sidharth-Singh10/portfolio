@@ -165,8 +165,7 @@ export default function Now(currentlyReading) {
                 rel="noopener noreferrer"
                 className="underline-offset-1 hover:underline"
               >
-                <span>Async Rust</span> by{' '}
-                <span>Maxwell Filton</span>
+                <span>Async Rust</span> by <span>Maxwell Filton</span>
               </a>
               <br />
               <span className="ml-2 font-semibold">Age:</span> <span>{ageString}</span>
@@ -212,7 +211,7 @@ export default function Now(currentlyReading) {
         {/* Work */}
         <div className="pb-4">
           <p>
-            Just Doing some Bitcoin stuff 
+            Just Doing some Bitcoin stuff
             {/* <Link
               href={'https://www.accenture.com/'}
               className="special-underline no-underline dark:text-gray-100 hover:dark:text-gray-100"

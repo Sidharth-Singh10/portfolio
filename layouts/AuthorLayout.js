@@ -54,7 +54,10 @@ export default function AuthorLayout({ children, frontMatter }) {
                 rel="noreferrer noopener"
               >
                 {/* change */}
-                <AiOutlineTwitter href={'https://x.com/sid10singh'} className="mr-2 mb-0.5 inline h-5 w-5" />
+                <AiOutlineTwitter
+                  href={'https://x.com/sid10singh'}
+                  className="mr-2 mb-0.5 inline h-5 w-5"
+                />
                 Say Hi!
               </a>
             </div>

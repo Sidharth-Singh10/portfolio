@@ -160,10 +160,11 @@ input:-webkit-autofill:focus {
   border-radius: 25px;
   background: linear-gradient(
     to left,
-    hsl(29deg 100% 20%) 0%, /* Changed to darker Shuttle orange */
-    hsl(29deg 100% 30%) 8%, /* Changed to darker Shuttle orange */
-    hsl(29deg 100% 30%) 92%, /* Changed to darker Shuttle orange */
-    hsl(29deg 100% 20%) 100% /* Changed to darker Shuttle orange */
+    hsl(29deg 100% 20%) 0%,
+    /* Changed to darker Shuttle orange */ hsl(29deg 100% 30%) 8%,
+    /* Changed to darker Shuttle orange */ hsl(29deg 100% 30%) 92%,
+    /* Changed to darker Shuttle orange */ hsl(29deg 100% 20%) 100%
+      /* Changed to darker Shuttle orange */
   );
 }
 .front {
@@ -210,10 +211,11 @@ input:-webkit-autofill:focus {
   border-radius: 25px;
   background: linear-gradient(
     to left,
-    hsl(0deg 0% 10%) 0%, /* Changed to dark Shuttle background color */
-    hsl(0deg 0% 15%) 8%, /* Changed to dark Shuttle background color */
-    hsl(0deg 0% 15%) 92%, /* Changed to dark Shuttle background color */
-    hsl(0deg 0% 10%) 100% /* Changed to dark Shuttle background color */
+    hsl(0deg 0% 10%) 0%,
+    /* Changed to dark Shuttle background color */ hsl(0deg 0% 15%) 8%,
+    /* Changed to dark Shuttle background color */ hsl(0deg 0% 15%) 92%,
+    /* Changed to dark Shuttle background color */ hsl(0deg 0% 10%) 100%
+      /* Changed to dark Shuttle background color */
   );
 }
 .frontblue {

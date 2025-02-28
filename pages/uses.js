@@ -12,15 +12,14 @@ export default function Uses() {
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Uses
           </h1>
-          
-          <div className="flex justify-center items-center py-20">
-            <h2 className="text-5xl font-bold text-gray-800 dark:text-gray-100 animate-pulse">
+
+          <div className="flex items-center justify-center py-20">
+            <h2 className="animate-pulse text-5xl font-bold text-gray-800 dark:text-gray-100">
               Coming Soon
             </h2>
           </div>
-          
         </div>
-        
+
         {/* Original implementation commented out
         <div className="container py-12">
           <div className="flex flex-row flex-wrap">

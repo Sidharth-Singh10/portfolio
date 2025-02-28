@@ -50,7 +50,6 @@ const projectsData = [
     tech2: 'Streamlit',
     tech3: 'NextJs',
   },
-  
 ]
 
 export default projectsData

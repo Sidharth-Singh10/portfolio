@@ -70,7 +70,7 @@ module.exports = {
           800: '#EF6C00',
           900: '#E65100',
         },
-        'background-color': '#1A1A1A',  //#1A1A1A
+        'background-color': '#1A1A1A', //#1A1A1A
         green: colors.emerald,
         gray: colors.neutral,
       },
