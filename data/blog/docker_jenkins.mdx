@@ -1,0 +1,91 @@
+---
+title: "Docker & Jenkins: Stepping Stones to the Cloud"
+date: '2024-10-08'
+tags: [docker, jenkins, devops, cloud]
+draft: false
+summary: Discussing the problem of software inconsistencies across different environments and how Docker and Jenkins provide a robust solution.
+---
+
+## Discussing The Underlying Problem
+
+You might have wondered why some apps or software run slow or are a bit buggy on your system and work seamlessly on another system. We all have come across the infamous problem of **"It works on my machine"**, which has become even more prevalent due to various hardware and software configurations.
+
+You may be familiar with:
+
+- macOS running on Apple’s ARM-based M-series chips.
+- Windows relying on Intel’s and AMD’s x86 architecture.
+- Qualcomm’s Snapdragon joining the ARM race with its Snapdragon X series.
+
+With such diverse hardware options, each with its own advantages and limitations, there’s no universal standard. This often leads to the dreaded *"It works on my machine"* problem.
+
+## A Solution?
+
+In this rapidly growing tech world, no one wants to waste time adjusting their system configurations just to run or test software that works perfectly elsewhere.
+
+To solve this, we have the **LEGO set of the software world: the Docker Image.**
+
+Imagine you bought a LEGO set of a spaceship filled with all the pieces you need to build it. It also contains instructions on how to assemble it. No matter how many times you break and rebuild, the spaceship remains the same.
+
+This is exactly how a **Docker image** works:
+
+- A Docker image contains all the necessary files and dependencies to build and run software.
+- It includes instructions on how to set up the software environment.
+
+Once we have the software built as an image:
+
+- **Where do we run it?** The beauty of Docker is that the image can be executed on any system, whether Windows, macOS, or Linux, without compatibility issues.
+- **How do we run it?** Just like a spaceship needs fuel, a Docker image requires the **Docker engine**, which runs the image automatically following the provided instructions.
+
+> Docker is widely available, and there are other tools for building images as well.
+
+## Decomposition/Composition
+
+Breaking down a complex problem into smaller sub-problems is called **decomposition.**
+
+Imagine you're working on a school project with friends:
+
+- One person gathers information.
+- Another writes.
+- Others draw, paint, and decorate.
+
+But who ensures everything fits together correctly? Who monitors progress and resolves conflicts?
+
+In software development, **Jenkins** takes on this leadership role.
+
+## Jenkins: The Project Leader
+
+Jenkins is a **CI/CD tool** that watches over the entire project:
+
+- It verifies that each contributor completes their task correctly.
+- It integrates all components to ensure seamless execution.
+- If mistakes occur, Jenkins alerts the relevant person for corrections.
+
+### Diving a Bit Deeper
+
+Jenkins is an **open-source automation server** used for **continuous integration and continuous delivery (CI/CD).**
+
+- **Master-Agent Architecture**: The master coordinates job execution, while agents (nodes) perform the actual work. Agents can run on different machines, enabling distributed builds and testing.
+- **Jenkins Pipelines**: A `Jenkinsfile` defines a series of steps (stages) for building, testing, and deploying software. Pipelines can be **declarative** (structured and user-friendly) or **scripted** (more flexible).
+
+#### Understanding Pipelines with an Analogy
+
+Building a toy car with friends follows a series of steps:
+
+1. One person cuts the car’s shape.
+2. Another paints it.
+3. Someone attaches the wheels.
+4. Finally, someone tests it by rolling it on the floor.
+
+A **Jenkins pipeline** is like this structured sequence of tasks, ensuring each step happens in the right order.
+
+### Automated Execution
+
+Jenkins can **automatically trigger jobs** based on:
+
+- Code commits to a repository.
+- Scheduled times (CRON jobs).
+- Completion of previous jobs.
+
+This ensures **continuous integration** and **continuous delivery**, keeping the software deployment process smooth and efficient.
+
+## To Be Continued...
