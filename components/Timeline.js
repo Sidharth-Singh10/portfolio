@@ -4,7 +4,7 @@ import { SiLeetcode } from 'react-icons/si'
 import { Disclosure, Transition } from '@headlessui/react'
 import { HiChevronDown, HiOutlineDatabase, HiOutlineSearch } from 'react-icons/hi'
 import { FaBaby } from 'react-icons/fa'
-import { BsBuilding } from 'react-icons/bs'
+import { BsBuilding, BsCode } from 'react-icons/bs'
 import { RiDoorClosedLine } from 'react-icons/ri'
 import { TbDeviceDesktopAnalytics } from 'react-icons/tb'
 
@@ -27,6 +27,20 @@ export default function Timeline() {
           </time>
           <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
             Actively seeking internship opportunities in software development
+          </p>
+        </li>
+        <li className="mb-4 ml-8 rounded-md border border-gray-100 bg-white px-4 py-4 shadow-sm shadow-gray-300 dark:border-zinc-900 dark:bg-zinc-900 dark:shadow-none">
+          <span className="absolute -left-3 flex h-6 w-6 items-center justify-center rounded-full bg-green-200 ring-8 ring-white dark:bg-green-900 dark:ring-gray-900">
+            <BsCode />
+          </span>
+          <h3 className="text-base font-semibold text-gray-900 dark:text-white">
+            Joined FOSS Wing of Axios Technical Wing
+          </h3>
+          <time className="text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+            August 2024
+          </time>
+          <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+            Became a member of the Free and Open Source Software Wing at IIITL
           </p>
         </li>
         <li className="mb-2 ml-8 rounded-md border border-gray-100 bg-white px-4 py-4 shadow-sm shadow-gray-300 dark:border-zinc-900 dark:bg-zinc-900 dark:shadow-none">
