@@ -39,7 +39,7 @@ export default function Home({ posts }) {
             </h1>
             <h2 className="prose pt-5 text-lg text-gray-600 dark:text-gray-300">
               {`Welcome to ${siteMetadata.description}.`} <br />
-              {`I am a Computer Science undergraduate passionate student about backend development, system architecture, and open-source contributions.`}
+              {`I am a Computer Science undergraduate student passionate about backend development, system architecture, and open-source contributions.`}
             </h2>
             <p className="pt-5 text-lg leading-7 text-slate-600 dark:text-slate-300 sm:block md:hidden lg:hidden">
               This is my place for{' '}

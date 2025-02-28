@@ -55,7 +55,7 @@ const securityHeaders = [
 module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   images: {
-    unoptimized: true,
+    // unoptimized: true,
     domains: [
       'i.scdn.co', // Spotify Album Art
       'pbs.twimg.com',

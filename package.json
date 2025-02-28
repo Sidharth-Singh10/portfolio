@@ -11,7 +11,7 @@
     "start": "cross-env SOCKET=true node ./scripts/next-remote-watch.js ./data",
     "dev": "next dev",
     "build": "next build && node ./scripts/generate-sitemap",
-    "deploy": "rm -rf out && next build && next export && touch out/.nojekyll && gh-pages -d out",
+    "deploy": "rm -rf out && next build  && node ./scripts/generate-sitemap  && gh-pages -d out",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir components --dir lib --dir layouts --dir scripts",
