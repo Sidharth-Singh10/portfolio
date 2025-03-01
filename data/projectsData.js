@@ -20,7 +20,7 @@ const projectsData = [
     tech1: 'NextJs',
     tech2: 'ExpressJs',
     tech3: 'Solona',
-    slug: '',
+    slug: 'soundscore',
   },
   {
     title: 'Affinity Bot',
@@ -31,7 +31,7 @@ const projectsData = [
     tech1: 'Rust',
     tech2: 'Serenity',
     tech3: 'Shuttle',
-    slug: '',
+    slug: 'affinitybot',
   },
   {
     title: 'CargoCut',
@@ -39,10 +39,10 @@ const projectsData = [
     imgSrc: '',
     href: '',
     github: 'https://github.com/Sidharth-Singh10/CargoCut',
-    tech1: 'Flask',
-    tech2: 'NLTK',
-    tech3: 'TfidfVectorizer',
-    slug: '',
+    tech1: 'Rust',
+    tech2: 'QoutientFilters',
+    tech3: 'Distributed postgres',
+    slug: 'cargocut',
   },
   {
     title: 'GeoSense',
