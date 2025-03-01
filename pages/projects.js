@@ -2,8 +2,27 @@ import siteMetadata from '@/data/siteMetadata'
 import projectsData from '@/data/projectsData'
 import Card from '@/components/Card'
 import { PageSEO } from '@/components/SEO'
+import { getAllFilesFrontMatter } from '@/lib/mdx'
 
-export default function Projects() {
+export const POSTS_PER_PAGE = 5
+
+export async function getStaticProps() {
+  const posts = await getAllFilesFrontMatter('blog')
+  const initialDisplayPosts = posts.slice(0, POSTS_PER_PAGE)
+  const pagination = {
+    currentPage: 1,
+    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
+  }
+
+  return { props: { initialDisplayPosts, posts, pagination } }
+}
+
+export default function Projects({ posts, initialDisplayPosts, pagination }) {
+  const filteredBlogPosts = posts.filter((frontMatter) => {
+    const searchContent = frontMatter.title + frontMatter.summary + frontMatter.tags.join(' ')
+    return searchContent.toLowerCase()
+  })
+  // const { slug, date, title, summary, tags } = frontMatter
   return (
     <>
       <PageSEO
@@ -32,6 +51,7 @@ export default function Projects() {
                 tech1={d.tech1}
                 tech2={d.tech2}
                 tech3={d.tech3}
+                slug={d.slug}
               />
             ))}
           </div>

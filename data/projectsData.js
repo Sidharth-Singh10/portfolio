@@ -9,6 +9,7 @@ const projectsData = [
     tech1: 'Rust',
     tech2: 'NextJs',
     tech3: 'kubernetes',
+    slug: 'affinity',
   },
   {
     title: 'SoundScore',
@@ -19,6 +20,7 @@ const projectsData = [
     tech1: 'NextJs',
     tech2: 'ExpressJs',
     tech3: 'Solona',
+    slug: '',
   },
   {
     title: 'Affinity Bot',
@@ -29,6 +31,7 @@ const projectsData = [
     tech1: 'Rust',
     tech2: 'Serenity',
     tech3: 'Shuttle',
+    slug: '',
   },
   {
     title: 'CargoCut',
@@ -39,6 +42,7 @@ const projectsData = [
     tech1: 'Flask',
     tech2: 'NLTK',
     tech3: 'TfidfVectorizer',
+    slug: '',
   },
   {
     title: 'GeoSense',
@@ -49,6 +53,7 @@ const projectsData = [
     tech1: 'Python',
     tech2: 'Streamlit',
     tech3: 'NextJs',
+    slug: '',
   },
 ]
 
