@@ -1,0 +1,56 @@
+---
+title: 'Onefetch'
+date: '2025-03-02'
+tags: [shell, git, terminal, customization]
+draft: false
+summary: 'A personalized Git repository greeter'
+images: ["/static/images/snippets/makima.png"]
+layout: PostSimple
+---
+
+# Onefetch: A personalized Git repository greeter
+
+OneFetch transforms your terminal with personalized repository insights. This shell script automatically displays custom graphics alongside comprehensive git stats whenever you navigate between repositories.
+
+```bash showLineNumbers
+image_path="~/Pictures/makima.jpg"
+alias gitfetch="onefetch --image $image_path"
+# onefetch greeter
+# git repository greeter
+last_repository=
+check_directory_for_new_repository() {
+	current_repository=$(git rev-parse --show-toplevel 2> /dev/null)
+	if [ "$current_repository" ] && \
+	   [ "$current_repository" != "$last_repository" ]; then
+		gitfetch
+	fi
+	last_repository=$current_repository
+}
+```
+
+## What You'll Get
+
+The example below shows CargoCut, a predominantly Rust project with JavaScript, Shell, and Dockerfile components. At a glance, you can see:
+
+- Git branch information
+- Pending changes
+- Project creation date
+- Language breakdown with percentages
+- Dependencies count
+- Author contributions
+- Recent commit history
+- Churn rates for specific files
+- Total lines of code and repository size
+
+The custom anime character image adds personal flair while keeping all this crucial information instantly visible - perfect for developers who want both functionality and personality in their workflow.
+
+## How to Set Up
+
+1. Install OneFetch: `cargo install onefetch` or via your package manager
+2. Add the script to your shell configuration file
+3. Choose your favorite image for the greeting
+4. Navigate between Git repositories and enjoy your personalized experience!
+
+This simple addition makes tracking project changes both informative and visually appealing.
+
+<img src="/static/images/snippets/makima.png" width="900"/>

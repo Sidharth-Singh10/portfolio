@@ -50,15 +50,15 @@ export default function SnippetsLayout({ posts, title, initialDisplayPosts = [],
         </div>
         <div className="grid grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
           {!filteredBlogPosts.length && 'Coming Soon'}
-          <motion.div
+          {/* <motion.div
             className="col-span-full flex items-center justify-center text-center"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             // transition={{ duration: 0.5, ease: 'easeInOut', repeat: Infinity, repeatType: 'reverse' }}
           >
             <h2 className="text-5xl font-bold text-gray-900 dark:text-gray-100">Coming Soon</h2>
-          </motion.div>
-          {/* {displayPosts.map((frontMatter) => {
+          </motion.div> */}
+          {displayPosts.map((frontMatter) => {
             const { slug, date, title, summary, tags } = frontMatter
             return (
               <Link
@@ -95,7 +95,7 @@ export default function SnippetsLayout({ posts, title, initialDisplayPosts = [],
                 </div>
               </Link>
             )
-          })} */}
+          })}
         </div>
       </div>
       {pagination && pagination.totalPages > 1 && !searchValue && (
