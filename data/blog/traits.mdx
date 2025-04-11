@@ -1,0 +1,281 @@
+---
+title: 'Traits'
+date: '2025-04-18'
+tags: [Rust]
+draft: false
+summary: Traits with a simpler examples
+---
+
+Understanding the Rust book defintions can be a tedious task espicially when you are new to programming and aren't yet familiar with the techincal jargons.
+
+Let's just get started with the formal definition mentioned in the rust book.<br/>
+"A trait defines the functionality a particular type has and can share with other types. We can use traits to define shared behavior in an abstract way."
+
+This means a `Trait` is simply a way to define **common behavior** that muiltple types can implement in their own way (similar to  `Interface` if you are coming from other languages)
+
+People coming from c++ or java what might wonder what does "and can share with other types" mean here?
+
+When you define a `Trait`, multiple **unrelated types** can implement it, even if they don’t share a common base struct or enum.
+This is unlike inheritance in OOP languages like Java or C++, where types must share a common superclass.
+
+In Rust, `Trait` let you share behavior across different types without forcing any hierarchy.
+
+
+Let's get on with a simple example, some of you might get nostalgia of your school days of learning OOP
+
+we define a trait:
+```rust 
+trait Animal {
+    fn make_sound(&self);
+}
+```
+we can implement this trait for multiple types:
+
+```rust
+struct Dog;
+struct Cat;
+
+impl Animal for Dog {
+    fn make_sound(&self) {
+        println!("Bark!");
+    }
+}
+
+impl Animal for Cat {
+    fn make_sound(&self) {
+        println!("Meow!");
+    }
+}
+```
+Now both Dog and Cat share a common behavior: **make_sound**
+
+```rust
+fn main() {
+    let d = Dog;
+    let c = Cat;
+
+    d.make_sound(); // Output: Bark!
+    c.make_sound(); // Output: Meow!
+}
+```
+Why this is useful?
+- You define abstract behavior (make_sound) once.
+- Different types (Dog, Cat) implement that behavior in their own way.
+- You can now write generic code that works on anything that is an Animal.
+
+These points will make sense as we dive deeper.
+
+## Trait Bounds
+
+As the name suggest, a bound or a restrict is made on **generics** to only types that implement certain behavior (traits).
+
+Generics? It's just a way that allows you to write code that works with multiple types.
+Through trait bounds we just add a restriction on the generic on what types it can handle.
+
+continuing from the previous example.
+Let's make a robot which can **make_sound**
+
+```rust
+struct Robot;
+
+impl Robot {
+fn make_sound(&self) {
+        println!("Beep boop!");
+    }
+}
+```
+
+Notice we did not use `Animal` trait this time.
+
+now lets a function sound_check but only for those with Animal trait (or you can say those implment the common behavior `Animal`).
+
+```rust
+pub fn sound_check<T:Animal>(item: &T) {
+   item.make_sound
+}
+```
+
+here `T` is an generic type which could have taken any type but we put a restriction that it can only take types which have implemented the `Animal` Trait.
+
+so
+```rust
+fn main()
+{
+    let c = Cat;
+    let d =  Dog;
+    let r = Robot;
+
+    sound_check(c);
+    sound_check(d);
+    sound_check(r); // throws error, as r (Robot instance) does not implement `Animal` trait. (Code does not compile)
+}
+
+```
+
+we can also write trait bounds as 
+```rust
+pub fn sound_check(item: &impl Animal) {
+   item.make_sound
+}
+```
+
+since rust wants strict compile-time guarantees
+
+```rust
+pub fn sound_check<T>(item: &T) {
+   item.make_sound
+}
+```
+a generic `T` without a bound wouldn't work because we cannot gurantee that `make_sound` will exist in any type that T takes.
+The compiler checks that only types that implement the required traits can be used — meaning no runtime errors like "method not found."
+
+## Specifying Multiple Trait Bounds with the `+` Syntax
+
+We can also specify more than one trait bound
+```rust
+pub fn sound_check<T>(item: &(impl Animal + Fly)) {
+   item.make_sound
+}
+```
+or
+```rust
+pub fn sound_check<T: Animal + Fly>(item: &T) {
+   item.make_sound
+}
+```
+## Clearer Trait Bounds with where Clauses
+Using too many trait bounds has its downsides. 
+Each generic has its own trait bounds, so functions with multiple generic type parameters can contain lots of trait
+bound information between the function’s name and its parameter list,
+making the function signature hard to read. For this reason,
+Rust has alternate syntax for specifying trait bounds inside a where clause after the function signature.
+
+So, instead of writing this:
+```rust
+fn some_function<T: Animal + Sea, U: Animal + Fly>(t: &T, u: &U) -> i32 {
+```
+
+we can use a where clause, like this:
+```rust
+fn some_function<T, U>(t: &T, u: &U) -> i32
+where
+    T: Animal + Sea,
+    U: Animal + Fly,
+{
+```
+
+### Returning Types That Implement Traits
+
+You want to return a value from a function without exposing the concrete type (such as `int`, `string` etc), 
+only the behavior you expect it to provide.
+
+In real-world systems, you often want to decouple what something does from how it does it.
+
+You're interested in behavior, not structure.
+- The function’s caller shouldn't care about the exact type.
+- The function’s implementer wants the freedom to choose the best type internally (and even change it later).
+
+Returning a trait helps when you care about the interface, not the implementation.
+
+It’s the difference between saying:
+- "I want some kind of PaymentProcessor" vs.
+- "I specifically want a StripeProcessor or PaypalProcessor."
+
+You just need a thing that can **.process_payment()** — that’s the power of traits.
+
+Let's see a real world example of a Logger system
+
+Define a trait
+```rust
+trait Logger{
+    fn fn log(&self, message: &str);
+}
+```
+
+Implement Different Logger Backends
+
+```rust
+struct ConsoleLogger;
+
+impl Logger for ConsoleLogger {
+    fn log(&self, message: &str) {
+        println!("[Console] {}", message);
+    }
+}
+
+struct FileLogger;
+
+impl Logger for FileLogger {
+    fn log(&self, message: &str) {
+        // pretend we're writing to a file
+        println!("[File] {}", message);
+    }
+}
+```
+Return Trait Object from a  Function
+
+```rust
+fn get_logger(mode: &str) -> Box<dyn Logger> { // using Box<dyn __> we are making a dynamic dispatch, more about this later 
+    match mode {
+        "console" => Box::new(ConsoleLogger),
+        "file" => Box::new(FileLogger),
+        _ => panic!("Unknown logger mode"),
+    }
+}
+```
+
+Use Without Knowing the Concrete Type
+```rust
+fn main() {
+    let logger = get_logger("console"); // or "file"
+    logger.log("App started successfully");
+}
+```
+
+Why This Is Powerful?
+- **Encapsulation:** The caller doesn't care which logger is returned — only that it implements the Logger trait.
+- **Swappable Backends:** Add a **RemoteLogger** in the future without changing client code.
+- **Runtime Flexibility:** Choose the backend at runtime via config or environment variables.
+
+### Using Trait Bounds to Conditionally Implement Methods
+You can use trait bounds to conditionally implement methods — meaning: 
+certain methods will only exist for a type if its generic type parameter implements a specific trait.
+
+This gives you fine-grained control over method availability based on capabilities of the type — 
+useful for API design, compile-time validation, and performance optimizations.
+
+```rust
+use std::fmt::Display;
+
+// A generic struct
+struct Wrapper<T> {
+    value: T,
+}
+
+// Implement methods for all T
+impl<T> Wrapper<T> {
+    fn new(value: T) -> Self {
+        Wrapper { value }
+    }
+}
+
+// Conditionally implement `to_string` only if T: Display
+impl<T: Display> Wrapper<T> {
+    fn to_string(&self) -> String {
+        format!("Wrapped: {}", self.value)
+    }
+}
+```
+Usage
+```rust
+fn main() {
+    let a = Wrapper::new(42);           // i32 implements Display
+    println!("{}", a.to_string());      // Works!
+
+    let b = Wrapper::new(vec![1, 2, 3]);
+    // println!("{}", b.to_string());   ❌ Won't compile: Vec<i32> doesn't implement Display
+}
+```
+- Wrapper\<T> is defined for any T.
+- The method to_string() is only available if T: Display.
+- If you try to call it with a type that doesn’t implement Display, you get a compile-time error — not a runtime panic.
