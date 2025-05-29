@@ -5,9 +5,10 @@ import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
 import { RoughNotation } from 'react-rough-notation'
-import NewsletterForm from '@/components/NewsletterForm'
 import ViewCounter from '@/components/ViewCounter'
 import SplitText from '@/components/react_bits/split_text'
+import { useState } from 'react'
+import PasswordModal from '@/components/authentication/PasswordModal'
 
 const MAX_DISPLAY = 3
 
@@ -18,6 +19,22 @@ export async function getStaticProps() {
 }
 
 export default function Home({ posts }) {
+  const [showPasswordModal, setShowPasswordModal] = useState(false)
+
+  const handleSecretClick = () => {
+    setShowPasswordModal(true)
+  }
+
+  const handlePasswordSuccess = () => {
+    // Add your secret action here
+    alert('Welcome to the secret area!')
+    // You could redirect to a secret page or show hidden content
+  }
+
+  const handleModalClose = () => {
+    setShowPasswordModal(false)
+  }
+
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
@@ -42,39 +59,49 @@ export default function Home({ posts }) {
               {`A Computer Science undergraduate student passionate about backend development, system architecture, and open-source contributions.`}
               <br />
               <br />
-              {`Take a moment to explore—you’ll get a glimpse of my journey.`}
+              {`Take a moment to explore—you'll get a glimpse of my journey.`}
               <br />
               {` Grab your favorite drink, read some technical blogs, review my projects, and discover useful snippets.`}
             </h2>
 
             <p className="pt-3 text-lg leading-7 text-slate-600 dark:text-slate-300 sm:block md:hidden lg:hidden">
               This is my place for{' '}
-              <RoughNotation
-                animate="true"
-                type="box"
-                show={true}
-                color="#DE1D8D"
-                animationDelay={1000}
-                animationDuration={2500}
-                className="text-slate-200"
+              <button
+                onClick={handleSecretClick}
+                className="font-inherit m-0 cursor-pointer border-none bg-transparent p-0"
               >
-                thoughts, reflections & everything&nbsp;
-              </RoughNotation>
+                <RoughNotation
+                  animate="true"
+                  type="box"
+                  show={true}
+                  color="#DE1D8D"
+                  animationDelay={1000}
+                  animationDuration={2500}
+                  className="text-slate-200"
+                >
+                  thoughts, reflections & everything&nbsp;
+                </RoughNotation>
+              </button>
               in between. Have a good read!
             </p>
             <p className="hidden pt-10 text-lg leading-7 text-slate-600 dark:text-slate-300 md:block">
               This is my place for{' '}
-              <RoughNotation
-                animate="true"
-                type="highlight"
-                show={true}
-                color="#DE1D8D"
-                animationDelay={1000}
-                animationDuration={2500}
-                className="text-slate-200"
+              <button
+                onClick={handleSecretClick}
+                className="font-inherit m-0 cursor-pointer border-none bg-transparent p-0 transition-opacity hover:opacity-80"
               >
-                thoughts, reflections & everything&nbsp;
-              </RoughNotation>
+                <RoughNotation
+                  animate="true"
+                  type="highlight"
+                  show={true}
+                  color="#DE1D8D"
+                  animationDelay={1000}
+                  animationDuration={2500}
+                  className="text-slate-200"
+                >
+                  thoughts, reflections & everything&nbsp;
+                </RoughNotation>
+              </button>
               in between. Have a good read!{' '}
               <div className="mt-8 text-slate-600 dark:text-slate-400">
                 <span className="text-sm">Press</span>{' '}
@@ -156,6 +183,16 @@ export default function Home({ posts }) {
             </div>
           </div>
         </div>
+
+        {/* Password Modal */}
+        <PasswordModal
+          isOpen={showPasswordModal}
+          onClose={handleModalClose}
+          onSuccess={handlePasswordSuccess}
+          title="Secret Access"
+          placeholder="Enter secret password"
+        />
+
         <h2 className="flex pb-6 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl md:text-5xl">
           Latest
         </h2>
